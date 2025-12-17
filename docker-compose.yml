@@ -7,6 +7,17 @@ volumes:
   prometheus_data:
 
 services:
+  node-exporter:
+    image: quay.io/prometheus/node-exporter:latest
+    command:
+      - --path.rootfs=/host
+    pid: host
+    restart: unless-stopped
+    networks: [monitorserv]
+    volumes:
+      - /:/host:ro,rslave
+    security_opt: ["no-new-privileges:true"]
+    read_only: true
   prometheus:
     image: prom/prometheus
     ports:
