@@ -1,3 +1,7 @@
+networks:
+  monitorserv:
+    driver: bridge
+
 volumes:
   grafana_data:
   prometheus_data:
@@ -7,6 +11,7 @@ services:
     image: prom/prometheus
     ports:
       - "9091:9090"
+    networks: [monitorserv]
     volumes:
       - prometheus_data:/prometheus
       - ./prometheus.yml:/etc/prometheus/prometheus.yml
@@ -14,5 +19,7 @@ services:
     image: grafana/grafana
     ports:
       - "3000:3000"
+    networks: [monitorserv]
     volumes:
       - grafana_data:/var/lib/grafana
+      - ./provisioning/datasources:/etc/grafana/provisioning/datasources:ro
