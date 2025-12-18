@@ -34,3 +34,11 @@ services:
     volumes:
       - grafana_data:/var/lib/grafana
       - ./provisioning/datasources:/etc/grafana/provisioning/datasources:ro
+      - ./grafana.ini:/etc/grafana/grafana.ini
+    environment:
+      - GF_EMAIL_PASSWORD=${GF_EMAIL_PASSWORD}
+      - GF_EMAIL_HOST=${GF_EMAIL_HOST}
+      - GF_EMAIL_USER=${GF_EMAIL_USER}
+      - GF_EMAIL_PASSWORD=${GF_EMAIL_PASSWORD}
+      - GF_EMAIL_FROM_ADDRESS=${GF_EMAIL_FROM_ADDRESS}
+      - GF_EMAIL_FROM_NAME=${GF_EMAIL_FROM_NAME}
