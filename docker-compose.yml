@@ -42,3 +42,13 @@ services:
       - GF_EMAIL_PASSWORD=${GF_EMAIL_PASSWORD}
       - GF_EMAIL_FROM_ADDRESS=${GF_EMAIL_FROM_ADDRESS}
       - GF_EMAIL_FROM_NAME=${GF_EMAIL_FROM_NAME}
+  blackbox:
+    image: prom/blackbox-exporter:latest
+    ports:
+      - "9115:9115"
+    networks: [monitorserv]
+    volumes:
+      - ./blackbox.yml:/etc/blackbox_exporter/config.yml
+    command:
+      - --config.file=/etc/blackbox_exporter/config.yml
+    restart: unless-stopped
