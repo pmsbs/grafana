@@ -27,6 +27,7 @@ scrape_configs:
           - https://saobento.amendolaeamendola.com.br/scpi9
           - https://saobento.amendolaeamendola.com.br/transparenciacamara
           - https://saobento.amendolaeamendola.com.br:8443/sipweb/trabalhador/login/login.xhtml
+          - https://saobento.amendolaeamendola.com.br:8453/issweb/home
     relabel_configs:
       - source_labels: [__address__]
         target_label: __param_target
